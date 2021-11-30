@@ -1,2 +1,2 @@
 # server
-servlet
+servlet, JSP
