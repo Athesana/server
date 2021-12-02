@@ -19,4 +19,20 @@
   	<error-code>500</error-code>
   	<location>/views/error/error500.jsp</location>
   </error-page>
+
+	<servlet>
+		<servlet-name>configTest</servlet-name>	
+		<jsp-file>/views/objects/index.jsp</jsp-file>
+		
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>이산아</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>configTest</servlet-name>
+		<url-pattern>/views/objects</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

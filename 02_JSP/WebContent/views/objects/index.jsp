@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -121,10 +122,74 @@
 		** 둘은 장단점이 있는게 아니라, 상황에 따라서 필요에 따라 사용한다.
 	 -->
 
+	<h3>session 객체</h3>
+	
+	<!-- 세션 생성 메소드 -->
+	isNew() : <%= session.isNew() %><br>
+	생성 시간 : <%= new Date(session.getCreationTime()) %><br>
+	최종 접속 시간 : <%= new Date(session.getLastAccessedTime()) %><br>
+	세션 ID : <%= session.getId() %>
+	
+	<!-- 브라우저를 켜서 서버에 접속하면 처음 = isNew() : true, 새로고침 = isNew() : false , 기존 세션이 유지되고 있음 until 브라우저 창 종료할 떄까지 -->
+	
+	<!-- 
+		ABOUT HTTP 프로토콜 
+		: 클라이언트가 서버에 요청을 하면, 서버는 요청을 보고 응답을 한다. 이 때, 클라이언트에 대한 상태가 서버에 저장(유지)되지 않는다. 
+		즉, 한 번 요청에 대한 응답을 하면 클라이언트와의 관계는 유지되지 않는다.
+		로그인이나 장바구니 기능들은 클라이언트의 상태가 유지되어야 하는 프로그램에는 HTTP만 가지고는 구현하기가 어렵다.
+		따라서 상태는 유지하지 않는 HTTP의 상태 특성 때문에 클라이언트과 서버의 상태(관계)를 유지하기 위한 기능이 세션이다. (similar. cookie)
+		세션 : 서버와 클라이언트와의 관계를 서버에 저장한다.
+		쿠키 : 서버와 클라이언트와의 관계를 클라이언트(사용자)에서 관리한다.
+	 -->
+	
+	<h3>application 객체</h3>
+	
+	<table border="1">
+		<tr>
+			<td>JSP 버전</td>
+			<td><%= application.getMajorVersion() %>, <%= application.getMinorVersion() %></td>
+		</tr>
+		<tr>
+			<td>컨테이너정보</td>
+			<td><%= application.getServerInfo() %></td>
+		</tr>
+		<tr>
+			<td>웹 애플리케이션의 실제 파일 시스템 경로</td>
+			<td><%= application.getRealPath("/") %></td>
+		</tr>
+	</table>
+	
+	
+	<h3>config 객체</h3>
+	
+	<table border="1">
+		<tr>
+			<th>초기 파라미터 이름</th>
+			<th>초기 파라미터 값</th>
+		</tr>
+		
+		<%
+			Enumeration<String> initParamNames = config.getInitParameterNames();
+		
+			while(initParamNames.hasMoreElements()){
+				String initParamName = initParamNames.nextElement();	
+		%>
+			<tr>
+				<td><%= initParamName %></td>
+				<td><%= config.getInitParameter(initParamName) %></td>
+			</tr>
+		
+		<%
+			}
+		%>
+		
+	</table>
 	
 	
 	
 	
+	
+
 	
 	
 </body>

@@ -27,7 +27,8 @@ public class MethodServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	// 사용자가 보낸 정보(데이터)들은 request 객체 안에 키(클라이언트에서 보낼 때 사용하는 name 속성의 값), 값(value 속성의 값) 형태로 담겨 있다.
-    	// 해당 name 속성을 가지는 요소의 value 값을 문자열로 읽어온다.
+    	// 해당 name 속성을 가지는 요소의 value 값을 문자열로 읽어온다. 어떤 값을 입력해도 다 문자열로 읽는다.
+    	// 쿼리 스트링
     	String userName = request.getParameter("userName");
     	String age = request.getParameter("age");
     	String gender = request.getParameter("gender");

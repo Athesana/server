@@ -71,10 +71,21 @@
 	<a href="views/objects">View Details</a>
 
 
+	<h2>영역 객체</h2>
+	<p>
+		JSP에서 제공하는 내장 객체들 중 pageContext, request, session, application 객체들은 해당 객체에에 정의된 유효 범위를 갖는다. <br>
+		해당 객체들은 유효한 범위 안에서 필요한 데이터를 서로 공유할 수 있다. 이 공유되는 데이터를 속성(Attribute)라고 하며 
+		속성을 공유할 수 있는 유효 범위를 영역(Scope) 이라고 한다. 
+	</p>
 
+	<ol>
+		<li>page		: pageContext 내장 객체를 통해 접근할 수 있는 영역으로 해당 페이지가 웹 브라우저에 서비스를 제공하는 동안만 유효하다.</li>
+		<li>request		: request 내장 객체를 통해 접근할 수 있는 영역으로 웹 브라우저의 요청이 처리되는 동안에 유효하다.</li>
+		<li>session		: session 내장 객체를 통해 접근할 수 있는 영역으로 세션이 유지되고 있는 범위 안에서 유효하다.</li>
+		<li>application	: application 내장 객체를 통해 접근 할 수 있는 영역으로 웹 애플리케이션이 실행되고 있는 동안에 유효하다.</li>
+	</ol>
 
-
-
+	<a href="views/scope">View Details</a>
 
 
 	
