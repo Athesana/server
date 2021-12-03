@@ -79,5 +79,19 @@
 	
 	
 	
+	<h3>5. 헤더에 접근하기</h3>
+	<h4>Scriptlet 을 이용하는 방식</h4>
+	Host 		: <%= request.getHeader("host") %><br>
+	User-Agent	: <%= request.getHeader("User-Agent") %>
+	
+	<h4>EL을 이용하는 방식</h4>
+	Host 		: ${ header.host }<br>
+	User-Agent	: ${ header['User-Agent'] %>
+	
+	
+	
+	
+	
+	
 </body>
 </html>
