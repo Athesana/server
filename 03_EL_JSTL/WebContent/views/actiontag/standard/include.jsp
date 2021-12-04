@@ -45,9 +45,9 @@
 	
 	<!-- 서블릿이 각각 만들어지기 때문에 변수가 중복되어도 상관없다. 컴파일 될 때 서블릿 안에 삽입되는게 아니라, 실행할 때 제어권 이후로 원래 페이지로 돌아오는 형식 -->
 	
-	<!--  jsp:param 액션 태그를 이용해서 포함되는 페이지로 값을 전달할 수 있다. -->
+	<!-- jsp:param 액션 태그를 이용해서 포함되는 페이지로 값을 전달할 수 있다. -->
 	<jsp:include page="includePage.jsp">
-		<jsp:param name="pName" value="갤럭시 flip" />
+		<jsp:param name="pName" value="갤럭시 flip"/>
 	</jsp:include>
 	
 

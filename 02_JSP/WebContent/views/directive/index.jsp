@@ -3,6 +3,7 @@
     
 <%@ include file="/views/common/header.jsp" %>
 
+<!-- 실제 content 영역 -->
 <section>
 	<h2>개인 정보 입력</h2>
 	
