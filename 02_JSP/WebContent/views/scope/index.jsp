@@ -9,7 +9,7 @@
 <body>
 	<h2>영역 객체</h2>
 	
-	<h3>session 영역과 application 영역의 비교</h3>
+	<h3>application 영역과 session영역의 비교</h3>
 	
 	<%
 		application.setAttribute("userName", "이산아");
