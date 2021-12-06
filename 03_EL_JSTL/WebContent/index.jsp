@@ -77,9 +77,20 @@
 	<a href="${ pageContext.request.contextPath }/views/actiontag/jstl/core.jsp">JSTL Core</a>
 	
 	
+	<h5>3-2) JSTL Formatting Library </h5>
+	<p>
+		날짜, 시간, 숫자 데이터의 출력 형식을 지정할 때 사용하는 태그이다. <br>
+	</p>
+	
+	<a href="${ pageContext.request.contextPath }/views/actiontag/jstl/fmt.jsp">JSTL Formatting</a>
 	
 	
+	<h5>3-3) JSTL Functions Library </h5>
+	<p>
+		문자열 처리에 관련된 메소드들을 EL 형식에서 사용할 수 있게 하는 라이브러리이다.
+	</p>
 	
+	<a href="${ pageContext.request.contextPath }/views/actiontag/jstl/functions.jsp">JSTL Functions</a>
 	
 </body>
 </html>

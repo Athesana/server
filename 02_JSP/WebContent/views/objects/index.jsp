@@ -118,6 +118,7 @@
 
 		[포워드]
 		forward() 하면 request와 response를 요청에 대한 정보를 현재 서버 안에 있는 forward.jsp가 직접 요청을 처리하는게 아니라, 요청 내용을 내부에서 forward_target.jsp로 넘긴다. 
+		페이지를 이동시킨 것일 뿐, 아직 사용자에게 응답을 해준 것은 아니다. (=요청이 처리된 것이 아니다.)
 		그럼 forward_target.jsp가 요청 처리하고 그 응답 결과를 클라이언트에게 보내준다.
 		그래서 클라이언트(브라우저) 입장에서는 하나의 요청만 보냈는데 요청 정보를 forward.jsp에서 forward_target.jsp로 forward한다. (다른 페이지로 넘긴 것) 
 		그래서 이 응답할 때 사용한 response 객체를 같이 넘겨준다. 그럼 forward_target.jsp이 처리하고 응답 내용을 response에 담아서 클라이언트에게 내려준다.

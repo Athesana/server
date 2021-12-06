@@ -9,9 +9,9 @@
 <body>
 	<h3>page 영역과 request 영역의 비교</h3>
 	
-	현재 page 영역에 저장된 데이터 : <%= pageContext.getAttribute("pageScope") %><br>
+	현재 page 영역에 저장된 데이터 : <%= pageContext.getAttribute("pageScope") %><br> <!-- null -->
 	
-	현재 request 영역에 저장된 데이터 : <%= request.getAttribute("requestScope") %>
+	현재 request 영역에 저장된 데이터 : <%= request.getAttribute("requestScope") %> <!-- requestValue -->
 	
 </body>
 </html>
