@@ -29,7 +29,7 @@ public class ELServlet extends HttpServlet {
     	ServletContext application = request.getServletContext();
     	
     	// Request Scope에 데이터를 저장
-    	// 값에 오는 데이터 타입은 객체를 포함해서 어떤 타입이든 상관없다. cuz auto-boxing 되기 때문에
+    	// 값에 오는 데이터 타입은 객체를 포함해서 어떤 타입이든 상관없다. cuz, 두 번째 매개값인 Object는 최상위 데이터 타입으로 auto-boxing 되기 때문에
     	request.setAttribute("classRoom", "R 강의장");
     	request.setAttribute("student", new Person("홍길동", 20, '남'));
     	request.setAttribute("scope", "Request 영역");
@@ -42,9 +42,11 @@ public class ELServlet extends HttpServlet {
     	// Application Scope에 데이터를 저장
     	application.setAttribute("scope", "Application 영역");
     	
-    	
+    	// request를 다른 곳으로 배송해주는 역할 by forward로 request랑 response를 같이 전달해준다.
 		request.getRequestDispatcher("views/el/el.jsp").forward(request, response);
 		
+		
+		// MVC : 요청이 오면 서블릿에서 받아서 비즈니스 로직을 처리하고, 데이터만 request, session, application에 담아서 jsp에 보내주면 jsp 페이지에서는 화면만 그려준다.
 		
 	}
 

@@ -14,7 +14,7 @@
 	
 	<h3>산술 연산</h3>
 	10 더하기 5 = ${ 10 + 5 }<br>
-	10 더하기 5 = ${ '10' + 5 }<br>
+	10 더하기 5 = ${ '10' + 5 }<br> <!-- EL에서는 문자 연결 연산자 지원 X, 숫자로 형변환해서 연산해줌 -->
 	10 빼기 5 = ${ 10 - 5 }<br>
 	10 곱하기 5 = ${ 10 * 5 }<br>
 	10 나누기 5 = ${ 10 / 5 } 또는 ${ 10 div 5 }<br>
@@ -35,6 +35,7 @@
 	%>
 	
 	<%--
+	영역 객체 안에 담고 나서는 출력이 가능해진다.
 	str1 : ${ str1 }<br>
 	str2 : ${ str2 }<br>
 	 --%>
@@ -42,7 +43,7 @@
 	 
 	<!-- 
 		서블릿에 보면 el에서 가져올 데이터를 영역 객체 안에 setAttribute로 저장했다.
-		el은 영역 객체에 저장되어있는 Attribute 속성에 접근해서 값을 가져온다.
+		el은 내장 객체 중에서도 영역 객체에 저장되어있는 Attribute 속성에 접근해서 값을 가져온다.
 		스크립트릿으로 변수를 선언하면 영역 객체에 담기는 것이 아니라, 지역 변수가 되기 때문에 el로 가져올 수 없다.
 		따라서 가져오고 싶으면 어떤 것이든 영역 객체 안에 담아주면 된다.
 		
@@ -58,7 +59,7 @@
 		</tr>
 		<tr>
 			<td>str1 == str2</td>
-			<td><%= str1 == str2 %> (비교: <%= (str1).equals(str2) %>)</td> <!-- 주소 값이 다르기 때문에 false -->
+			<td><%= str1 == str2 %> (비교: <%= str1.equals(str2) %>)</td> <!-- 데이터는 같지만, 주소 값이 다르기 때문에 false -->
 			<td>${ str1 == str2 } 또는 ${ str1 eq str2 }</td> <!-- EL의 == 연산은 equals() 메소드와 같은 동작을 한다. true -->
 		</tr>
 		<tr>
@@ -68,12 +69,12 @@
 		</tr>
 		<tr>
 			<td>p1 == p2</td>
-			<td><%= p1 == p2 %></td>
+			<td><%= p1 == p2 %></td> <!-- false -->
 			<td>${ p1 == p2 } 또는 ${ p1 eq p2 }</td>
 		</tr>
 		<tr>
 			<td>p1 != p2</td>
-			<td><%= p1 != p2 %></td>
+			<td><%= p1 != p2 %></td> <!-- true -->
 			<td>${ p1 != p2 } 또는 ${ p1 ne p2 }</td>
 		</tr>
 	</table>
@@ -86,6 +87,8 @@
 		// pageContext.setAttribute("big", 'a');  // 가능
 		pageContext.setAttribute("small", 3);
 	%>
+	
+	<!-- 실제로 값은 숫자형태로 넣었어도 두 번째 매개값은 Object 형태로 저장되기 때문에 EL 쓰면 자동으로 형변환 되기 때문에 연산 및 비교 연산 가능해진다. -->
 	
 	Scriptlet : <%= (Integer)pageContext.getAttribute("big") + (int)pageContext.getAttribute("small") %> <!-- 오토언박싱 -->
 	
@@ -107,7 +110,7 @@
 	<h3>객체가 null 또는 비어있는지 체크하는 연산자</h3>
 	<%
 		// String str3 = null;
-		String str3 = "";  // 빈문자열인지도 체크	
+		String str3 = "";  // 빈문자열인지도 체크해준다.
 		// String str3 = "a"; 
 		List<String> list = new ArrayList<>();
 		
@@ -128,7 +131,9 @@
 	
 	${ true && true } 또는 ${ true and false }<br> 
 	${ true || false } 또는 ${ true or false }<br>
-	${ !true } 또는 ${ not true }
+	${ !true } 또는 ${ not true }<br>
+	${ !(big > small) } 또는 ${ not (big > small) } 
+	<!-- false, false : 비교 연산의 결과 값이 논리 값이기 때문에 이렇게도 작성 가능 -->
 	
 	
 	

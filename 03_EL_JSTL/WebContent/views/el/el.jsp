@@ -38,10 +38,10 @@
 		1. EL은 request, session 등 JSP 영역 객체를 구분하지 않아도 자동으로 입력된 속성명(키 값)을 검색해서 존재하는 경우 값을 가져온다.
 			- page -> request -> session -> application 영역 순서대로 해당 속성을 찾고 값을 가져온다.
 			
-		2. EL은 Scriptlet과 다르게 getter를 사용하지 않고 filed명으로 직접 접근하는 것 같지만 아니다.
-			내부적으로 해당 객체의 getter를 자동으로 할당하여 저장된 값을 읽어온다.
+		2. EL은 Scriptlet과 다르게 getter를 사용하지 않고 filed명으로 직접 접근하는 것 같지만 아니다. (접근제한자가 private여도 가능)
+			내부적으로 해당 객체의 getter를 자동으로 할당하여 저장된 값을 읽어온다. (getter를 추가해야한다.)
 			
-		: Person 에서 @Data 를 없애고 실행해보면 다음 에러 발생 (lombok이 깔려있다는 전제하에, 없으면 getter 추가)
+		: Person.java 파일에서 @Data 를 없애고 실행해보면 다음 에러 발생 (lombok이 깔려있다는 전제하에, 없으면 getter 추가)
 		javax.el.PropertyNotFoundException: 타입 [com.kh.el.model.vo.Person]에서 프로퍼티 [name]을(를) 찾을 수 없습니다.
 	 -->
 	
@@ -56,7 +56,7 @@
 	scope : ${ scope }<br> 
 	<!-- 순서대로 속성을 찾지만, 만약에 발견된다면 발견된 영역에 있는 값을 즉시 출력하고 끝! -->
 	
-	<!-- 만약 내가 원한 영역에 있는 속성 값을 가져 오고 싶다면? : 내장 객체를 활용하세요~ -->
+	<!-- 만약 내가 원한 영역에 있는 속성 값을 가져 오고 싶다면? : EL 내장 객체를 활용하세요~ -->
 	
 	<%
 		// Page Scope에 데이터를 저장

@@ -24,7 +24,11 @@
 	
 	<h4>2) EL(Param)</h4>
 	
-	<!-- <form action="/03_EL_JSTL/views/el/elParam.jsp" method="post"> ContextPath가 바뀌면 404 에러 발생할 수 있다.-->
+	<!-- <form action="/03_EL_JSTL/views/el/elParam.jsp" method="post"> 
+		ContextPath가 바뀌면 404 에러 발생할 수 있다. 따라서 EL 쓸 때는 하드코딩보다는 경로를 찾아오는 방법을 지향하라~! -->
+	<!-- POST 방식으로 요청을 보낼 때는 request 객체도 인코딩을 해줘야 한다.
+		<% request.setCharacterEncoding("UTF-8"); %> 을 .jsp 파일에 적어주세요. -->
+		
 	<form action="${ pageContext.request.contextPath }/views/el/elParam.jsp" method="post">
 		<fieldset>
 			<legend>제품 입력</legend>
@@ -37,16 +41,18 @@
 	</form>
 	
 	
-	<h4>2) EL(연산자)</h4>
+	<h4>3) EL(연산자)</h4>
 	
 	<a href="${ pageContext.request.contextPath }/views/el/elOperation.jsp">View Details</a>
+	
+	
+	
 	
 	
 	<h3>JSP Action Tag</h3>
 	<p>
 		JSP 페이지에서 자바 코드 등의 스크립트 언어를 사용하지 않고, <br>
 		HTML 태그 형태로 페이지나 객체에 접근할 수 있도록 태그를 이용해 구현한 기능을 말한다. <br>
-		태그 형태로 만든다고 해서 ~~?? 
 	</p>
 	
 	<h4>1) 표준 액션 태그 (Standard Action Tag)</h4>
@@ -58,11 +64,14 @@
 	<br>
 	<a href="${ pageContext.request.contextPath }/views/actiontag/standard/forward.jsp">jsp:forward</a>
 	
+	
 	<h4>2) 커스텀 액션 태그(Custom Action Tag)</h4>
 	<p>
 		개발자가 직접 만들어서 사용하는 액션 태그로 라이브러리 형태로 설치해야만 사용이 가능하다. <br>
 		커스텀 액션 태그는 모든 태그의 이름 앞에 jsp: 이외의 접두어를 사용한다. 
 	</p>
+	
+	
 	<h4>3) JSTL (JSP Standard Tag Library)</h4>
 	<p>
 		JSP에서 사용하는 커스텀 태그로 <br>

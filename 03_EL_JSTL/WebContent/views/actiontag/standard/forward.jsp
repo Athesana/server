@@ -19,6 +19,11 @@
 	<jsp:forward page="forwardPage.jsp"/>
 	
 	<!-- 
+	
+	서블릿으로 바뀔 때 out.print("<script>alert('안녕하세요.');</script>") 형식이 된다. 
+	out 객체의 print는 print 할 때마다 사용자에게 넘어가는 것이 아니라, 버퍼에 쌓이는 것인데
+	forward 하면 버퍼가 비워져서 클라이언트에게 가지 않는다.
+	
 	포워딩 전에 응답 객체에 쓴 내용은 forwarding 되면서 버퍼가 지워져서 아무런 효과가 없다. 따라서 alert 되지 않는 것
 	서블릿으로 바뀔 때 : out.print('<jsp:forward page="forwardPage.jsp"/>') 형식으로 쓰여지게 된다. 
 	사용자에게 매번 넘어가는게 아니라 버퍼에 쌓이고 있다. out 객체에 있던 버퍼에 쌓여있던 내용이 사라지고 클라이언트에게 가지 않는다.

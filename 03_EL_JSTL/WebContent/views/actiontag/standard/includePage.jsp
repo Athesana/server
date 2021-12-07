@@ -19,5 +19,6 @@
 	Include Page의 year변수의 값 <%= year %><br><br>
 	
 	pName : ${ param.pName } 
+	<%-- pName : <%= pName %> --%>
 </body>
 </html>
