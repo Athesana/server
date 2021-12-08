@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.ajax.model.vo.User;
 
 
@@ -46,23 +47,25 @@ public class JqAjaxServlet2 extends HttpServlet {
     	// 라이브러리를 쓰기 전에 JSON을 만들어서 테스트해보자. (넘 복잡...)
 //    	String result = "{\"no\":1, \"name\":\"홍길동\", \"age\":30 \"gender\":\"남\"}";
 //    	
-//    	
 //    	response.getWriter().print(result);
     	
-    	response.getWriter().print(new Gson().toJson(findUser));
+    	// 1번 방법
+//    	String json = new Gson().toJson(findUser);
+//    	
+//    	String json2 = new GsonBuilder().setPrettyPrinting().create().toJson(findUser);
+//    	
+//    	System.out.println(json);
+//    
+//    	System.out.println(json2);
+//    
+//    	response.getWriter().print(new Gson().toJson(findUser));
+    	
+    	// 2번 방법
+    	new Gson().toJson(findUser, response.getWriter());
     	
     	
-    	
-    	
-    	
-    	
-	
+
 	}
 
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
-	}
 
 }

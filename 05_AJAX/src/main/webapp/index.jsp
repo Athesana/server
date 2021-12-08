@@ -27,15 +27,23 @@
 			// 1. XMLHttpRequest 객체 생성
 			let xhr = new XMLHttpRequest();
 			
-			/* 브라우저 버전별 ajax 지원 여부 및 호환성 검사를 해야 한다. 
+			/* 브라우저 버전별 ajax 지원 여부 및 호환성 검사를 해야 한다.
 			// IE 7버전 이상 또는 그 외의 브라우저들
-			if(window.XMLHttpRequest){
+			if(window.XMLHttpRequest) {
 				xhr = new XMLHttpRequest();
 			}
-			
-			// IE 5버전 이하일 경우
-			
-			
+			 // IE 6버전 이하일 경우
+			else if (window.ActiveXObject){
+				try {
+					xhr = ActiveXObject("Microsoft.XMLHTTP");
+				} catch(e) {
+					xhr = null;
+				}
+			} 
+			// ajax를 지원하지 않는 브라우저
+			else {
+				xhr = null;
+			}
 			*/
 			
 			// 2. onreadystatechange : AJAX 통신에 대한 응답 상태에 변경이 있을 경우 실행될 함수 
@@ -218,6 +226,18 @@
 					},
 					success: function(obj){
 						console.log(obj);
+						
+						let reulst = "";
+						
+						if(obj !== null){
+							result = "no : " + obj.no + ", name : " + obj.name + ", age" + obj.age + ", gender : " + obj.gender;
+						} else {
+							result = "사용자 정보가 없습니다.";
+							
+						}
+						
+						$("#textArea1").val(result);
+						
 					},
 					error: function(error){
 						console.log(error)
@@ -229,6 +249,74 @@
 		});
 	
 	</script>
+	
+	<h4>4) 서버로 데이터 전송 후, 응답을 리스트(List)로 받기</h4>
+	
+	<p>
+		선택한 성별을 가진 모든 회원 정보를 출력
+	</p>
+	
+	<!-- name 속성은 같아야 한다. -->
+	성별 : <label><input type="radio" name="gender" value="남" checked>남자</label>
+		  <label><input type="radio" name="gender" value="여">여자</label>
+	
+	
+	<button id="btn4">조회</button>
+	
+	<br><br>
+	
+	<textarea id="textArea2" rows="4" cols="40"></textarea>
+	
+	<script>
+		$(document).ready(() => {
+			$("#btn4").on("click", () => {
+				let gender = $("input[name=gender]:checked").val();
+				
+				$.ajax({
+					type: "get",
+					url: "jqAjax3.do",
+					dataType: "json",
+					data: {
+						gender
+					},
+					success: (list) => {
+						let result = "";
+						
+						$.each(list, (i) => {
+							result +=
+								"no : " + list[i].no + ", name : " + list[i].name + " \n";  
+							
+						}) ;
+						
+						$("#textArea2").val(result);
+					},
+					error: (error) => {
+						console.log(error);
+						
+					}
+					
+				});
+
+			});
+			
+		});
+	
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </body>

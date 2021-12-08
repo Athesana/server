@@ -40,7 +40,8 @@
 	num1 변수 값 : ${ num1 } 또는 ${ pageScope.num1 } <br>
 	num1 변수 값(표현식) : <%= pageContext.getAttribute("num1") %><br>
 	num2 변수 값 : ${ num2 } 또는 ${ requestScope.num2 }<br>
-	result 변수 값 : ${ result } 또는 ${ sessionScope.result }
+	result 변수 값 : ${ result } 또는 ${ sessionScope.result }<br>
+	array 배열 값 : ${ array }<br>
 	
 	
 	<h4>2) 변수 삭제 (c:remove)</h4>
@@ -49,7 +50,7 @@
 	</p>
 	 
 	<c:set var="result" value="99999" scope="request" /> 
-	<!-- 이름은 같아도 영역 객체가 다르기 때문에 같은 이름으로 변수 선언 가능 -->
+	<!-- result 라는 변수명은 같아도 저장되는 영역 객체가 다르기 때문에 같은 이름으로 변수 선언 가능 -->
 	
 	삭제 전 : ${ result }<br><br>
 	
@@ -68,10 +69,10 @@
 		데이터를 출력할 때 사용하는 태그이다.
 	</p>
 	 
-	<c:out value="<b>태그로 출력하기</b>" />
-	<br>	 
-	<c:out value="<b>태그로 출력하기</b>" escapeXml="false"/>
-	<br>
+	태그를 문자열로 출력 : <c:out value="<b>태그로 출력하기</b>" />
+	<br><br>
+	태그로 해석되어 출력 : <c:out value="<b>태그로 출력하기</b>" escapeXml="false"/>
+	<br><br>
 	기본 값 출력 : <c:out value="${ result }" default="값이 없음"/>
 	
 	
@@ -95,7 +96,9 @@
 	<h4>2) Choose(c:choose, c:when, c:otherwide) </h4>
 	<p>
 		자바의 if else if 문 또는 switch 문과 비슷한 역할을 하는 태그이다. <br>
-		각 조건들은 c:choose 문의 c:when 을 통해서 작성한다. (default 값으로는 c:otehrwise를 사용한다.)
+		각 조건들은 c:choose 문의 c:when 을 통해서 작성한다. (default 값으로는 c:otehrwise를 사용한다.)<br>
+		when 안에 test 조건이 만족하면 그것만 출력하고 하위에 있는 when, otherwise 문은 사용하지 않고 choose문은 종료된다.<br>
+		test 조건식은 EL 형식으로 작성해야한다.
 	</p>
 	 
 	<c:set var="count" value="1" />
@@ -115,7 +118,7 @@
 	<h3>3. 반복문 </h3>
 	<h4>1) forEach (c:forEach) </h4>
 	<p>
-		자바의 for, for-in 문에 해당하는 기능을 제공한는 태그이다.
+		자바의 for, for-in 문에 해당하는 기능을 제공하는 태그이다.
 	</p>
 	 
 	<h5>* 기본 사용법</h5>
@@ -195,8 +198,10 @@
 	 
 	 <h3>4. URL (c:url) </h3>
 	 <p>
-	 	URL 경로를 생성하고, 해당 URL의 param 속성을 선언하여 쿼리 스트링을 정의할 수 있는 태그이다. <br>
-	 	해당 태그를 통해 URL 경로와 관련된 쿼리 스트링의 값을 미리 결정하여 이를 제어할 수 있다.
+	 	URL 경로를 생성하고, 해당 URL의 param 속성을 선언하여 쿼리 스트링을 정의할 수 있는 태그이다. (한글 자동 인코딩)<br>
+	 	해당 태그를 통해 URL 경로와 관련된 쿼리 스트링의 값을 미리 결정하여 이를 제어할 수 있다.<br>
+	 	지금 이거는 GET 요청이다.(쿼리 스트링으로 URL로 날아간다. 따라서 별도의 인코딩 작업 필요 없다.)<br> 
+	 	1. a 태그 사용하는 방법 2. URL 직접 입력 3. form태그 사용
 	 </p>
 	 
 	 <c:url var="url" value="urlPage.jsp">
@@ -207,16 +212,7 @@
 	 </c:url>
 	 
 	 <a href=" ${ url }">이동</a>
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+
 	 
 	<br><br><br>
 	<br><br><br>
