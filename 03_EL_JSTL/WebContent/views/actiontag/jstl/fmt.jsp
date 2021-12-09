@@ -16,6 +16,7 @@
 	톰캣 서버의 Locale 정보 : ${ pageContext.response.locale }
 	
 	<%-- 
+	현재는 kO_KR
 	
 	<fmt:setLocale value="en_us"/>
 	
@@ -55,8 +56,8 @@
 		value 속성에는 java.util.Date 객체를 사용해야 한다.
 	</p>
 	
-	<!-- type 생략 가능 (기본값: date) -->
 	<c:set var="now" value="<%=new Date() %>"/><br>
+	<!-- type 생략 가능 (기본값: date) -->
 	<fmt:formatDate type="date" value="${ now }"/><br>
 	
 	<fmt:formatDate type="time" value="<%= new Date() %>"/>	<br><br>

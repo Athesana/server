@@ -20,8 +20,7 @@ public class EncryptUtil {
 	 *    	- SHA-512는 임의의 길이 메시지를 512비트(64바이트)의 축약된 메시지로 만들어내는 해시 알고리즘이다.
 	 *    * 암호화 해시 함수의 안정성을 강화하기 위해 추가로 스트레칭, sort
 	 */
-	
-	// 단방향 암호화를 하는 메소드를 만들자. (MD2, MD5, SHA, SHA-1, SHA-256, SHA-512를 지원한다.)
+		// 단방향 암호화를 하는 메소드를 만들자. (MessageDigest에서 제공하는 알고리즘 : MD2, MD5, SHA, SHA-1, SHA-256, SHA-512)
 	public static String oneWayEnc(String message, String algorithm) {
 		byte[] digest;
 		String encMessage = "";
