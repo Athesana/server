@@ -1,26 +1,44 @@
 package com.kh.mvc.common.jdbc;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class JDBCTemplate {
 
 	public static Connection getConnection() {
 		Connection connection = null;
+		Properties properties = new Properties();
+		String filePath = JDBCTemplate.class.getResource("./driver.properties").getPath();
+		
+		System.out.println(filePath);
 		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			properties.load(new FileReader(filePath));
 			
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "WEB", "WEB");
+			Class.forName(properties.getProperty("db.driver"));
+			
+			connection = DriverManager.getConnection(
+					properties.getProperty("db.url"), 
+					properties.getProperty("db.username"), 
+					properties.getProperty("db.password")
+			);
 			
 			connection.setAutoCommit(false);
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		

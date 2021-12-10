@@ -13,11 +13,7 @@ public class MemberService {
 	private MemberDao dao = new MemberDao();
 
 	public Member login(String id, String password) {
-		Connection connection = getConnection();
-		
-		Member member = dao.findMemberById(connection, id);
-		
-		close(connection);
+		Member member = this.findMemberById(id);
 		
 		if(member != null && member.getPassword().equals(password)) {
 			return member;
@@ -27,11 +23,17 @@ public class MemberService {
 		
 	}
 
+	// 이 객체는 no 값이 없다. 업데이트해야되는 member는 no값이 있다. 그래서 no 를 가지고 비교를 한다.
 	public int save(Member member) {
 		int result = 0;
 		Connection connection = getConnection();
 		
-		result = dao.insertMember(connection, member);
+		if(member.getNo() != 0) {
+			result = dao.updateMember(connection, member);
+		} else {
+			result = dao.insertMember(connection, member);
+		}
+		
 		
 		if(result > 0) {
 			commit(connection);
@@ -43,5 +45,45 @@ public class MemberService {
 		
 		return result;
 	}
+
+	public int delete(int no) {
+		int result = 0;
+		Connection connection = getConnection();
+		
+		result = dao.updateMemberStatus(connection, no, "N");
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+	
+	public boolean isDuplicateID(String id) {
+		
+		return this.findMemberById(id) != null;
+	}
+	
+	public Member findMemberById(String id) {
+		Connection connection = getConnection();
+		
+		Member member = dao.findMemberById(connection, id);
+		
+		close(connection);
+		
+		return member;
+		
+	}
+
+	public int updatePassword(int no, String updatePwd) {
+		
+		return 0;
+	}
+
+
 
 }
