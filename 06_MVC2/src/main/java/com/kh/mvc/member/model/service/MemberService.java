@@ -63,6 +63,24 @@ public class MemberService {
 		return result;
 	}
 	
+	public int updatePassword(int no, String password) {
+		int result = 0;
+		
+		Connection connection = getConnection();
+		result = dao.updateMemberPassword(connection, no, password);
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+		
+		return result;
+	}
+
+	
 	public boolean isDuplicateID(String id) {
 		
 		return this.findMemberById(id) != null;
@@ -79,10 +97,6 @@ public class MemberService {
 		
 	}
 
-	public int updatePassword(int no, String updatePwd) {
-		
-		return 0;
-	}
 
 
 

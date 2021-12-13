@@ -39,7 +39,7 @@ public class UpdatePwdServlet extends HttpServlet {
     		
     		if (result > 0) {
         		request.setAttribute("msg", "비밀번호 변경이 완료되었습니다.");
-        		
+        		request.setAttribute("script", "self.close()");       		
     		} else {
         		request.setAttribute("msg", "비밀번호 변경이 실패하였습니다.");
         		request.setAttribute("location", "/member/updatePwd");

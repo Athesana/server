@@ -130,6 +130,29 @@ public class MemberDao {
 		
 		return result;
 	}
+
+	public int updateMemberPassword(Connection connection, int no, String password) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE MEMBER SET PASSWORD=? WHERE NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setString(1, password);
+			pstmt.setInt(2, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 	
 
 

@@ -26,6 +26,7 @@ public class JqAjaxServlet2 extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	// Integer객체에 parseInt 메소드 사용해서 String userNo로 받던 것을 int userNo로 바꿈
     	int userNo = Integer.parseInt(request.getParameter("userNo"));
     	
     	// 사용자 정보가 저장되어 있는 List 생성
@@ -42,6 +43,9 @@ public class JqAjaxServlet2 extends HttpServlet {
     						.findFirst()
     						.orElse(null);
     	
+    	// Predicate : 매개값 user가 있고 판별해서 true나 false로 리턴해서 userNo랑 동일한 값만 걸려내서 stream()된고, 요소 한개만 가져오고 싶어서 .findFirst를 주면 Optional로 값을 가져온다.
+    	
+    	
     	response.setContentType("application/json; charset=UTF-8");
 
     	// 라이브러리를 쓰기 전에 JSON을 만들어서 테스트해보자. (넘 복잡...)
@@ -52,6 +56,7 @@ public class JqAjaxServlet2 extends HttpServlet {
     	// 1번 방법
 //    	String json = new Gson().toJson(findUser);
 //    	
+    	// 사람이 읽기 편한 형태로 출력해주는 방법(Gson -> Json(객체))
 //    	String json2 = new GsonBuilder().setPrettyPrinting().create().toJson(findUser);
 //    	
 //    	System.out.println(json);
@@ -64,7 +69,7 @@ public class JqAjaxServlet2 extends HttpServlet {
     	new Gson().toJson(findUser, response.getWriter());
     	
     	
-
+    	// 없는 값을 조회하면 null을 리턴한다.
 	}
 
 

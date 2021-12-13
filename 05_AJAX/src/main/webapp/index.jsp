@@ -141,7 +141,7 @@
 				$.ajax({
 					type: "get", // 전송 방식(get 또는 post)
 					url: "jqAjax1.do", // 데이터를 전송할 URL(필수값!)
-					data: {  // 요청 시 전달할 파라미터 설정 (이름과 변수명이 동일하면 하나만 작성해도 된다.)
+					data: {  // 요청 시 전달할 파라미터 설정 (속성명과 변수명이 동일하면 네이밍 규칙에 의해 하나만 작성해도 된다.)
 						input: input
 					},
 					success: function(result){
@@ -182,7 +182,7 @@
 					type: "post",
 					url: "jqAjax1.do",
 					data: {
-						input // inpu: input으로 변경된다. (속성명과 해당 속멍값을 담고 있는 변수명이 동일한 경우)
+						input // input: input으로 변경된다. (속성명과 해당 속멍값을 담고 있는 변수명이 동일한 경우)
 					},
 					success: function(result){
 						$("#output2").val(result);
@@ -227,7 +227,7 @@
 					success: function(obj){
 						console.log(obj);
 						
-						let reulst = "";
+						let result = "";
 						
 						if(obj !== null){
 							result = "no : " + obj.no + ", name : " + obj.name + ", age" + obj.age + ", gender : " + obj.gender;
@@ -249,6 +249,14 @@
 		});
 	
 	</script>
+	
+	<%-- 
+		1. 스크립트 만들고 404뜨니까
+		2. JqAjaxServlet2.java 서블릿 만들고
+		3. model.vo에 User 클래스 만듬	
+		4. JqAjaxServlet2에 LIST 객체 생성하고 데이터 저장
+		5. tojson 라이브러리 활용하면 자바스크립트 객체로 만들어서 클라이언트로 정보를 넘겨준다.
+	--%>
 	
 	<h4>4) 서버로 데이터 전송 후, 응답을 리스트(List)로 받기</h4>
 	
