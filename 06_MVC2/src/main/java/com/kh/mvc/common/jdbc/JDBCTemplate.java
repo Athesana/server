@@ -14,7 +14,10 @@ public class JDBCTemplate {
 
 	public static Connection getConnection() {
 		Connection connection = null;
+		
 		Properties properties = new Properties();
+		
+		
 		String filePath = JDBCTemplate.class.getResource("./driver.properties").getPath();
 		
 		System.out.println(filePath);
