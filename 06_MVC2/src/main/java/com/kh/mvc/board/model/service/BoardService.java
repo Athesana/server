@@ -25,6 +25,17 @@ public class BoardService {
 		
 		return count;
 	}
+	
+	public Board findBoardByNo(int no) {
+		Board board = null;
+		Connection connection = getConnection();
+		
+		board = dao.findBoardByNo(connection, no);
+		
+		close(connection);
+		
+		return board;
+	}
 
 	public List<Board> getBoardList(PageInfo pageInfo) {
 		
@@ -57,5 +68,24 @@ public class BoardService {
 		close(connection);
 		return result;
 	}
+
+	public int delete(int no) {
+		int result = 0;
+		
+		Connection connection = getConnection();
+		
+		result = dao.updateStatus(connection, no, "N");
+		
+		if(result > 0) {
+			commit(connection);
+		} else {
+			rollback(connection);
+		}
+		
+		close(connection);
+				
+		return result;
+	}
+
 
 }

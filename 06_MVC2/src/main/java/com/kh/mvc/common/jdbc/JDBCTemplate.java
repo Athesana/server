@@ -20,7 +20,7 @@ public class JDBCTemplate {
 		
 		String filePath = JDBCTemplate.class.getResource("./driver.properties").getPath();
 		
-		System.out.println(filePath);
+//		System.out.println(filePath);
 		
 		try {
 			properties.load(new FileReader(filePath));

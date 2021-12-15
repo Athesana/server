@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <jsp:include page="/views/common/header.jsp" />
 
 <style>
@@ -28,36 +29,46 @@
 		<table id="tbl-board">
 			<tr>
 				<th>글번호</th>
-				<td></td>
+				<td>${ board.no }</td>
 			</tr>
 			<tr>
 				<th>제 목</th>
-				<td></td>
+				<td>${ board.title }</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td></td>
+				<td>${ board.writerId }</td>
 			</tr>
 			<tr>
 				<th>조회수</th>
-				<td></td>
+				<td>${ board.readCount }</td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
 				<td>
-					<span style="color: gray;"> - </span>
+					<c:if test="${ empty board.originalFileName }">
+						<span> - </span>
+					</c:if>
+					<c:if test="${ !empty board.originalFileName }">
+						<img src="${ pageContext.request.contextPath }/resources/images/file.png" width="20" height="20"/>
+						<c:out value="${ board.originalFileName }"/> 
+					</c:if>
 				</td>
 			</tr>
 			<tr>
 				<th>내 용</th>
-				<td></td>
+				<td>${ board.content }</td>
 			</tr>
 			<%--글작성자/관리자인경우 수정삭제 가능 --%>
 			<tr>
 				<th colspan="2">
+				
+					<c:if test="${ !empty loginMember && loginMember.id == board.writerId }">				
 					<button type="button">수정</button>
-					<button type="button">삭제</button>
-					<button type="button">목록으로</button>
+					<button type="button" id="btnDelete">삭제</button>
+					</c:if>
+				
+					<button type="button" onclick="location.href='${ pageContext.request.contextPath }/board/list'">목록으로</button>
 				</th>
 			</tr>
 		</table>
@@ -87,5 +98,16 @@
 	    </table>
     </div>
 </section>
+
+<script>
+	$(document).ready(() => {
+		$("#btnDelete").on("click", () => {
+			if(confirm("정말 게시글을 삭제 하시겠습니까?")){
+				location.replace("${ pageContext.request.contextPath }/board/delete?no=${ board.no }");
+			} 
+			
+		});
+	});
+</script>
 
 <jsp:include page="/views/common/footer.jsp" />

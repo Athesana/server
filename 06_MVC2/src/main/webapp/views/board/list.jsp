@@ -39,17 +39,26 @@
 			<c:if test="${ !empty list }">
 				<c:forEach var="board" items="${ list }">
 					<tr>
-						<td>${ board.no }</td>
-						<td>${ board.title }</td>
+						<td>${ board.rowNum }</td>
+						<td>
+							<a href="${ pageContext.request.contextPath }/board/view?no=${ board.no }">
+								${ board.title }
+							</a>
+						</td>
 						<td>${ board.writerId }</td>
 						<td>${ board.createDate }</td>
 						<td>
-							<span> - </span>
+							<c:if test="${ empty board.originalFileName }">
+								<span> - </span>
+							</c:if>
+							<c:if test="${ !empty board.originalFileName }">
+								<img src="${ pageContext.request.contextPath }/resources/images/file.png" width="20" height="20"/>
+							</c:if>
 						</td>
 						<td>${ board.readCount }</td>
 					</tr>
 				</c:forEach>
-			</c:if>
+			</c:if>			
 		</table>
 		<div id="pageBar">
 			<!-- 맨 처음으로 -->

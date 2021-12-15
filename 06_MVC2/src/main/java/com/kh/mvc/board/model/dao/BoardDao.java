@@ -38,7 +38,57 @@ public class BoardDao {
 				
 		return count;
 	}
+	
+	public Board findBoardByNo(Connection connection, int no) {
+		Board board = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query =             
+				"SELECT "
+	            +   "B.NO, "
+	            +   "B.TITLE, "
+	            +   "M.ID, "
+	            +   "B.READCOUNT, "
+	            +   "B.ORIGINAL_FILENAME, "
+	            +   "B.RENAMED_FILENAME, "
+	            +   "B.CONTENT, "
+	            +   "B.CREATE_DATE, "
+	            +   "B.MODIFY_DATE "
+	            + "FROM BOARD B "
+	            + "JOIN MEMBER M ON(B.WRITER_NO = M.NO) "
+	            + "WHERE B.STATUS = 'Y' AND B.NO=?";
+		
+		try {
+			pstmt = connection.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				board = new Board();
+				
+				board.setNo(rs.getInt("NO"));
+				board.setTitle(rs.getString("TITLE"));
+				board.setWriterId(rs.getString("ID"));
+				board.setReadCount(rs.getInt("READCOUNT"));
+				board.setOriginalFileName(rs.getString("ORIGINAL_FILENAME"));
+				board.setRenamedFileName(rs.getString("RENAMED_FILENAME"));
+				board.setContent(rs.getString("CONTENT"));
+				board.setCreateDate(rs.getDate("CREATE_DATE"));
+				board.setModifyDate(rs.getDate("MODIFY_DATE"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return board;
+	}
 
+	
 	public List<Board> findAll(Connection connection, PageInfo pageInfo) {
 		// 조회되는 값이 없으면 빈 리스트를 반환
 		
@@ -128,5 +178,11 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	public int updateStatus(Connection connection, int no, String string) {
+		
+		return 1;
+	}
+
 
 }
