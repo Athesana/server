@@ -51,7 +51,18 @@
 					</c:if>
 					<c:if test="${ !empty board.originalFileName }">
 						<img src="${ pageContext.request.contextPath }/resources/images/file.png" width="20" height="20"/>
-						<c:out value="${ board.originalFileName }"/> 
+						
+						<%-- 
+							1. 파일이 웹 루트 하위에 존재할 때 사용하는 방법
+						<a href="${ pageContext.request.contextPath }/resources/upload/board/${ board.renamedFileName }"
+							download=${ board.originalFileName }>
+							<c:out value="${ board.originalFileName }"/>
+						</a>
+						 --%> 
+						 
+						 <a href="javascript:fileDownload('${ board.originalFileName }', '${ board.renamedFileName }')">
+						 	<c:out value="${ board.originalFileName }"/>
+						 </a>
 					</c:if>
 				</td>
 			</tr>
@@ -64,7 +75,7 @@
 				<th colspan="2">
 				
 					<c:if test="${ !empty loginMember && loginMember.id == board.writerId }">				
-					<button type="button">수정</button>
+					<button type="button" onclick="location.href='${ pageContext.request.contextPath }/board/update?no=${ board.no }'">수정</button>
 					<button type="button" id="btnDelete">삭제</button>
 					</c:if>
 				
@@ -106,8 +117,19 @@
 				location.replace("${ pageContext.request.contextPath }/board/delete?no=${ board.no }");
 			} 
 			
-		});
+		})
+
 	});
+	
+
+	function fileDownload(oname, rname){
+		
+		// encodeURIComponent() 
+		// - 아스키 문자(a~z, A~Z, 1~9, ..)는 그대로 전달하고 기타 문자(한글, 기타 특수문자 등)만 %XX(16진수 2자리) 와 같이 변환된다.
+	 	location.assign("${ pageContext.request.contextPath }/board/fileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
+	}
+
+	
 </script>
 
 <jsp:include page="/views/common/footer.jsp" />

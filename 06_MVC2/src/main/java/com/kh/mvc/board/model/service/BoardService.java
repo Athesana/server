@@ -53,7 +53,7 @@ public class BoardService {
 		Connection connection = getConnection();
 		
 		if(board.getNo() != 0 ) {
-//			dao.updateBoard(connection, board);
+			result = dao.updateBoard(connection, board);
 			
 		} else {
 			result = dao.insertBoard(connection, board);
