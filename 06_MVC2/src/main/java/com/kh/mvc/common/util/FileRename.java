@@ -9,7 +9,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 // File Rename 정책 만들기 위해서 FileRenamePolicy 인터페이스를 구현한다.
 public class FileRename implements FileRenamePolicy {
-	// 물리적인 위치에 저장되는 파일 이름
+	
 	// 해당 메소드를 구현해 업로드되는 파일의 이름을 변경할 수 있다.
 	@Override
 	public File rename(File oldFile) {		
