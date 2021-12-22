@@ -126,7 +126,7 @@
 		
 		// encodeURIComponent() 
 		// - 아스키 문자(a~z, A~Z, 1~9, ..)는 그대로 전달하고 기타 문자(한글, 기타 특수문자 등)만 %XX(16진수 2자리) 와 같이 변환된다.
-	 	location.assign("${ pageContext.request.contextPath }/board/fileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
+	 	location.assign("${ pageContext.request.contextPath }/board/boardFileDown?oname=" + encodeURIComponent(oname) + "&rname=" + encodeURIComponent(rname));
 	}
 
 	
