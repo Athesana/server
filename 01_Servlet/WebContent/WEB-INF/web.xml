@@ -21,7 +21,10 @@
   </welcome-file-list>
   
   
-  <!-- 서블릿 등록 -->
+  <!-- 서블릿 등록 : 톰캣한테 웹 애플리케이션 실행전에 읽는 web.xml을 읽을 때 알려주는 역할
+  	servlet-name : xml 내부에서 사용할 서블릿 이름을 지정
+  	servlet-class : 풀패키지 이름.클래스 파일을 지정, 앞에서 작성한 서블릿 클래스의 명(패키지 전체까지)
+  -->
   <servlet>
   	<servlet-name>first</servlet-name>
   	<servlet-class>com.kh.servlet.FirstServlet</servlet-class>
@@ -29,11 +32,15 @@
   
  
   <!-- 등록한 서블릿을 주소와 연결 = URL과 매핑(mapping) -->
-  <!-- http://localhost:8088/01_Servlet/first.do  
-  	http:// 		: 프로토콜
-  	localhost:8088  : 서버에 대한 정보(도메인 포트 번호)
-  	01_Servlet		: 애플리케이션의 명칭(Context)
+  <!-- http://localhost:8088/01_Servlet/first.do  : 실제 요청된 URL
+  	http:// 		: 프로토콜(요청 프로토콜)
+  	localhost:8088  : 서버에 대한 정보(톰캣에 대한 정보, 포트 번호)
+  	01_Servlet		: 톰캣 위에 있는 특정 애플리케이션의 명칭(Context)
   	first.do		: 서블릿을 실행시키기 위한 주소
+  	
+  	servlet-name : 서블릿 등록시 사용했던 이름
+  	usrl-pattern : 여기에 지정한 URL 로 사용자가 요청을 하면 위에 등록과정에서 first라고 등록한 서블릿에서 처리를 하겠다.
+  	cf. 톰캣 = 서블릿 컨테이너
   -->
   
   <servlet-mapping>

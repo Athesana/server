@@ -48,6 +48,9 @@ public class JDBCTemplate {
 		return connection;
 	}
 	
+	
+	
+	
 	public static void commit(Connection connection) {
 		
 		try {

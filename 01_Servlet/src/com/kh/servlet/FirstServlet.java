@@ -29,10 +29,13 @@ public class FirstServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		// GET 방식의 요청에 응답할 로직을 구현하면 된다.
+		// GET 요청 : 1) 주소창에 직접 URL을 입력하는 것 2) <a> 태그에 href 속성을 통해서 요청 3) <form>태그에 method에 get으로 지정
 		System.out.println("사용자로부터 GET 요청을 받음.");
 		
+		// 사용자로 보내는 응답의 타입이 컨텐츠 타입이 뭐고 인코딩이 뭐야 설정해주는 것
 		response.setContentType("text/html;charset=utf-8");
 		
+		// 문자 기반의 데이터를 준다. 
 		PrintWriter out = response.getWriter();
 		
 		out.write("<html>");
