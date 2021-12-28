@@ -20,6 +20,7 @@
 		1-2. isErrorPage="true"로 속성이 정해진 페이지에서는 별도의 선언 없이 exception 이라는 변수에 접근할 수 있다.
 		1-3. exception 변수에서 여러 메소드를 사용해서 어떤 exception인지 확인할 수 있다.
 	2. 톰캣이 웹 애플리케이션을 로드할 때 web.xml에 에러 코드를 <error-page>와 <error-code>404일 때 <location>URI 
-		직접 지정해서 해당 에러가 발생했을 때 보여줄 페이지를 지정한다. (web.xml 파일은 수정하면 서버 종료 후 다시 접속해야함-->
+		직접 지정해서 해당 에러가 발생했을 때 보여줄 페이지를 지정한다. (web.xml 파일은 수정하면 서버 종료 후 다시 접속해야함
+		헤더에 errorPage="../error/error.jsp" 있음 -->
 </body>
 </html>

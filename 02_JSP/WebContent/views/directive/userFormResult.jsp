@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	// 인코딩 설정
+	// 인코딩 설정(post일 경우 필요)
 	request.setCharacterEncoding("utf-8");
 
 	// 폼 파라미터 값 읽어오기
